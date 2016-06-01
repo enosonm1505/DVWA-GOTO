@@ -176,7 +176,108 @@ function messagesPopAllToHtml() {
 
 // --END (message functions)
 
-function dvwaHtmlEcho( $pPage ) {
+function getPageVariables($page) {
+	$menuBlocks = array();
+
+	$menuBlocks[ 'home' ] = array();
+	if( dvwaIsLoggedIn() ) {
+		$menuBlocks[ 'home' ][] = array( 'id' => 'home', 'name' => 'Home', 'url' => '.' );
+		$menuBlocks[ 'home' ][] = array( 'id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php' );
+		$menuBlocks[ 'home' ][] = array( 'id' => 'setup', 'name' => 'Setup / Reset DB', 'url' => 'setup.php' );
+	}
+	else {
+		$menuBlocks[ 'home' ][] = array( 'id' => 'setup', 'name' => 'Setup DVWA', 'url' => 'setup.php' );
+		$menuBlocks[ 'home' ][] = array( 'id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php' );
+	}
+
+	if( dvwaIsLoggedIn() ) {
+		$menuBlocks[ 'vulnerabilities' ] = array();
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'brute', 'name' => 'Brute Force', 'url' => 'vulnerabilities/brute/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'exec', 'name' => 'Command Injection', 'url' => 'vulnerabilities/exec/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'csrf', 'name' => 'CSRF', 'url' => 'vulnerabilities/csrf/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'fi', 'name' => 'File Inclusion', 'url' => 'vulnerabilities/fi/.?page=include.php' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'upload', 'name' => 'File Upload', 'url' => 'vulnerabilities/upload/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'captcha', 'name' => 'Insecure CAPTCHA', 'url' => 'vulnerabilities/captcha/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'sqli', 'name' => 'SQL Injection', 'url' => 'vulnerabilities/sqli/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'sqli_blind', 'name' => 'SQL Injection (Blind)', 'url' => 'vulnerabilities/sqli_blind/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_r', 'name' => 'XSS (Reflected)', 'url' => 'vulnerabilities/xss_r/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_s', 'name' => 'XSS (Stored)', 'url' => 'vulnerabilities/xss_s/' );
+	}
+
+	$menuBlocks[ 'meta' ] = array();
+	if( dvwaIsLoggedIn() ) {
+		$menuBlocks[ 'meta' ][] = array( 'id' => 'security', 'name' => 'DVWA Security', 'url' => 'security.php' );
+		$menuBlocks[ 'meta' ][] = array( 'id' => 'phpinfo', 'name' => 'PHP Info', 'url' => 'phpinfo.php' );
+	}
+	$menuBlocks[ 'meta' ][] = array( 'id' => 'about', 'name' => 'About', 'url' => 'about.php' );
+
+	if( dvwaIsLoggedIn() ) {
+		$menuBlocks[ 'logout' ] = array();
+		$menuBlocks[ 'logout' ][] = array( 'id' => 'logout', 'name' => 'Logout', 'url' => 'logout.php' );
+	}
+
+	foreach ($menuBlocks as &$menuBlock) {
+		foreach ($menuBlock as &$menuItem) {
+			$menuItem['selected'] = true;
+		}
+	}
+
+	foreach ($menuBlocks as &$menuBlock) {
+		foreach ($menuBlock as &$menuItem) {
+			$menuItem['selected'] = $menuItem['id'] == $page['page_id'];
+		}
+	}
+
+	unset($menuBlock);
+	unset($menuItem);
+
+	switch( dvwaSecurityLevelGet() ) {
+		case 'low':
+			$securityLevel = 'low';
+			break;
+		case 'medium':
+			$securityLevel = 'medium';
+			break;
+		case 'high':
+			$securityLevel = 'high';
+			break;
+		default:
+			$securityLevel = 'impossible';
+			break;
+	}
+
+	$phpIdsEnabled = dvwaPhpIdsIsEnabled() ? 'enabled' : 'disabled';
+	$userInfo = dvwaCurrentUser();
+
+	$messagesHtml = messagesPopAllToHtml();
+	if( $messagesHtml ) {
+		$messagesHtml = "<div class=\"body_padded\">{$messagesHtml}</div>";
+	}
+
+	$systemInfoHtml = "";
+	if( dvwaIsLoggedIn() )
+		$systemInfoHtml = "<div align=\"left\">{$userInfo}<br /><em>Security Level:</em> {$securityLevel}<br />{$phpIds}</div>";
+	if( $page[ 'source_button' ] ) {
+		$systemInfoHtml = dvwaButtonSourceHtmlGet( $page[ 'source_button' ] ) . " $systemInfoHtml";
+	}
+	if( $page[ 'help_button' ] ) {
+		$systemInfoHtml = dvwaButtonHelpHtmlGet( $page[ 'help_button' ] ) . " $systemInfoHtml";
+	}
+
+	// Send Headers + main HTML code
+	Header( 'Cache-Control: no-cache, must-revalidate');   // HTTP/1.1
+	Header( 'Content-Type: text/html;charset=utf-8' );     // TODO- proper XHTML headers...
+	Header( 'Expires: Tue, 23 Jun 2009 12:00:00 GMT' );    // Date in the past
+
+	return [
+		'menuBlocks' => $menuBlocks,
+		'securityLevel' => $securityLevel,
+		'phpIdsEnabled' => $phpIdsEnabled,
+		'userInfo' => $userInfo
+	];
+}
+
+/*function dvwaHtmlEcho( $pPage ) {
 	$menuBlocks = array();
 
 	$menuBlocks[ 'home' ] = array();
@@ -330,7 +431,7 @@ function dvwaHtmlEcho( $pPage ) {
 	</body>
 
 </html>";
-}
+}*/
 
 
 function dvwaHelpHtmlEcho( $pPage ) {

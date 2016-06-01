@@ -1,4 +1,7 @@
 <?php
+$dir = dirname(__FILE__);
+
+$templates = require $dir.'/templates/templates.php';
 
 define( 'DVWA_WEB_PAGE_TO_ROOT', '' );
 require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
@@ -9,7 +12,15 @@ $page = dvwaPageNewGrab();
 $page[ 'title' ]   = 'Welcome' . $page[ 'title_separator' ].$page[ 'title' ];
 $page[ 'page_id' ] = 'home';
 
-$page[ 'body' ] .= "
+$templateVars = getPageVariables($page);
+$templateVars = array_merge($templateVars, $templates->getTemplateVariables());
+$templateVars = array_merge($templateVars, [
+    'title' => $page['title']
+]);
+
+echo $templates->render('base', $templateVars);
+
+/*$page[ 'body' ] .= "
 <div class=\"body_padded\">
 	<h1>Welcome to Damn Vulnerable Web Application!</h1>
 	<p>Damn Vulnerable Web Application (DVWA) is a PHP/MySQL web application that is damn vulnerable. Its main goal is to be an aid for security professionals to test their skills and tools in a legal environment, help web developers better understand the processes of securing web applications and to aid both students & teachers to learn about web application security in a controlled class room environment.</p>
@@ -43,8 +54,8 @@ $page[ 'body' ] .= "
 	</ul>
 	<hr />
 	<br />
-</div>";
+</div>";*/
 
-dvwaHtmlEcho( $page );
+//dvwaHtmlEcho( $page );
 
 ?>
