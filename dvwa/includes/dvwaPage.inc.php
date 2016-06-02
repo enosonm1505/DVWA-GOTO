@@ -274,7 +274,8 @@ function getPageVariables($page) {
 		'userInfo' => $userInfo,
         'messages' => $messages,
         'userLoggedIn' => dvwaIsLoggedIn(),
-        'page' => $page
+        'page' => $page,
+        'version' => dvwaVersionGet()
 	];
 }
 

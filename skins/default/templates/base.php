@@ -27,9 +27,9 @@
         </div>
     
         <div id="main_body">
-    
-            <!--{$pPage[ 'body' ]}
-            <br /><br />-->
+
+            <?= $this->section('content') ?>
+            <br /><br />
             <?= $this->insert($this->data['themeName'].'/templates/messages', $this->data) ?>
     
         </div>
@@ -41,11 +41,11 @@
             <?= $this->insert($this->data['themeName'].'/templates/system_info', $this->data) ?>
         </div>
     
-        <!--<div id="footer">
+        <div id="footer">
     
-            <p>Damn Vulnerable Web Application (DVWA) v" . dvwaVersionGet() . "</p>
+            <p>Damn Vulnerable Web Application (DVWA) v<?= $this->data['version'] ?></p>
     
-        </div>-->
+        </div>
     
     </div>
 </body>

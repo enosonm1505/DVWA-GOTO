@@ -9,6 +9,15 @@ class TemplateController {
     public function __construct($templates) {
         $this->theme = 'default';
         $this->templates = new League\Plates\Engine($templates, 'php');
+
+        $this->templates->registerFunction('externalLink', function ($url, $text) {
+            if (is_null($text)) {
+                return '<a href="http://hiderefer.com/?' . $url . '" target="_blank">' . $url . '</a>';
+            }
+            else {
+                return '<a href="http://hiderefer.com/?' . $url . '" target="_blank">' . $text . '</a>';
+            }
+        });
     }
     
     // Render a template directly

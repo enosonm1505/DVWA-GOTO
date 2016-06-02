@@ -18,7 +18,7 @@ $templateVars = array_merge($templateVars, [
     'title' => $page['title']
 ]);
 
-echo $templates->render('base', $templateVars);
+echo $templates->render('index', $templateVars);
 
 /*$page[ 'body' ] .= "
 <div class=\"body_padded\">
