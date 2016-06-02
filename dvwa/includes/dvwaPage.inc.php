@@ -166,12 +166,13 @@ function dvwaMessagePop() {
 
 
 function messagesPopAllToHtml() {
-	$messagesHtml = '';
+	$messages = array();
 	while( $message = dvwaMessagePop() ) {   // TODO- sharpen!
-		$messagesHtml .= "<div class=\"message\">{$message}</div>";
+		array_push($messages, $message);
+		//$messagesHtml .= "<div class=\"message\">{$message}</div>";
 	}
 
-	return $messagesHtml;
+	return $messages;
 }
 
 // --END (message functions)
@@ -246,13 +247,10 @@ function getPageVariables($page) {
 			break;
 	}
 
-	$phpIdsEnabled = dvwaPhpIdsIsEnabled() ? 'enabled' : 'disabled';
+	$phpIdsEnabled = dvwaPhpIdsIsEnabled();
 	$userInfo = dvwaCurrentUser();
 
-	$messagesHtml = messagesPopAllToHtml();
-	if( $messagesHtml ) {
-		$messagesHtml = "<div class=\"body_padded\">{$messagesHtml}</div>";
-	}
+	$messages = messagesPopAllToHtml();
 
 	$systemInfoHtml = "";
 	if( dvwaIsLoggedIn() )
@@ -273,7 +271,10 @@ function getPageVariables($page) {
 		'menuBlocks' => $menuBlocks,
 		'securityLevel' => $securityLevel,
 		'phpIdsEnabled' => $phpIdsEnabled,
-		'userInfo' => $userInfo
+		'userInfo' => $userInfo,
+        'messages' => $messages,
+        'userLoggedIn' => dvwaIsLoggedIn(),
+        'page' => $page
 	];
 }
 

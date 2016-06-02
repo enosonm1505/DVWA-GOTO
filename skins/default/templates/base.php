@@ -26,11 +26,11 @@
     
         </div>
     
-        <!--<div id="main_body">
+        <div id="main_body">
     
-            {$pPage[ 'body' ]}
-            <br /><br />
-            {$messagesHtml}
+            <!--{$pPage[ 'body' ]}
+            <br /><br />-->
+            <?= $this->insert($this->data['themeName'].'/templates/messages', $this->data) ?>
     
         </div>
     
@@ -38,10 +38,10 @@
         </div>
     
         <div id="system_info">
-            {$systemInfoHtml}
+            <?= $this->insert($this->data['themeName'].'/templates/system_info', $this->data) ?>
         </div>
     
-        <div id="footer">
+        <!--<div id="footer">
     
             <p>Damn Vulnerable Web Application (DVWA) v" . dvwaVersionGet() . "</p>
     
