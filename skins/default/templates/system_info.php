@@ -20,7 +20,7 @@
 
 <?php if ($this->data['userLoggedIn']): ?>
 <div align="left">
-    <em>Username:</em><?= $this->data['userInfo'] ?><br />
+    <em>Username:</em> <?= $this->data['userInfo'] ?><br />
     <em>Security Level:</em> <?= $this->data['securityLevel'] ?><br />
     <em>PHPIDS:</em> <?= ($this->data['phpIdsEnabled'] ? 'enabled' : 'disabled') ?>
 </div>
