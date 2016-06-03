@@ -75,6 +75,10 @@ function dvwaPhpIdsTrap() {
 		$ids = new IDS_Monitor( $request, $init );
 		$result = $ids->run();
 
+		echo '<pre>';
+		print_r($result);
+		echo '</pre>';
+
 		if( !$result->isEmpty() ) {
 			require_once 'IDS/Log/File.php';
 			require_once 'IDS/Log/Composite.php';
