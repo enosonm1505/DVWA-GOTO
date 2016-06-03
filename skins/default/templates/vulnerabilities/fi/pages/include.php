@@ -2,11 +2,11 @@
 <div class="body_padded">
     <h1>Vulnerability: File Inclusion</h1>
 
-    <?php if ($this->data['allowUrlInclude']): ?>
+    <?php if (!$this->data['allowUrlInclude']): ?>
     <div class="warning">The PHP function <em>allow_url_include</em> is not enabled.</div>
     <?php endif ?>
 
-    <?php if ($this->data['allowUrlFopen']): ?>
+    <?php if (!$this->data['allowUrlFopen']): ?>
     <div class="warning">The PHP function <em>allow_url_fopen</em> is not enabled.</div>
     <?php endif ?>
 
