@@ -10,7 +10,7 @@ class TemplateController {
         $this->theme = 'default';
         $this->templates = new League\Plates\Engine($templates, 'php');
 
-        $this->templates->registerFunction('externalLink', function ($url, $text) {
+        $this->templates->registerFunction('externalLink', function ($url, $text = null) {
             if (is_null($text)) {
                 return '<a href="http://hiderefer.com/?' . $url . '" target="_blank">' . $url . '</a>';
             }
@@ -25,10 +25,10 @@ class TemplateController {
         return $this->templates->render($this->theme.'/templates/'.$index, $variables);
     }
 
-    public function getTemplateVariables() {
+    public function getTemplateVariables($path = '') {
         return [
-            'root' => '',
-            'templateRoot' => 'skins/'.$this->theme.'/',
+            'root' => $path,
+            'templateRoot' => $path . 'skins/'.$this->theme.'/',
             'themeName' => $this->theme
         ];
     }
