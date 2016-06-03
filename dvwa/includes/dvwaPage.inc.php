@@ -588,7 +588,7 @@ function dvwaGuestbook() {
 	$query  = "SELECT name, comment FROM guestbook";
 	$result = mysql_query( $query );
 
-	$guestbook = '';
+	$guestbook = array();
 
 	while( $row = mysql_fetch_row( $result ) ) {
 		if( dvwaSecurityLevelGet() == 'impossible' ) {
@@ -600,7 +600,12 @@ function dvwaGuestbook() {
 			$comment = $row[1];
 		}
 
-		$guestbook .= "<div id=\"guestbook_comments\">Name: {$name}<br />" . "Message: {$comment}<br /></div>\n";
+		$element = [
+			'name' => $name,
+			'comment' => $comment
+		];
+
+		array_push($guestbook, $element);
 	}
 	return $guestbook;
 }
