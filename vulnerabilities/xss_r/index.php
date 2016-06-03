@@ -1,5 +1,8 @@
 <?php
 
+$dir = dirname(__FILE__);
+$templates = require $dir.'/../../templates/templates.php';
+
 define( 'DVWA_WEB_PAGE_TO_ROOT', '../../' );
 require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 
@@ -31,36 +34,15 @@ switch( $_COOKIE[ 'security' ] ) {
 
 require_once DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/xss_r/source/{$vulnerabilityFile}";
 
-$page[ 'body' ] .= "
-<div class=\"body_padded\">
-	<h1>Vulnerability: Reflected Cross Site Scripting (XSS)</h1>
+$templateVars = getPageVariables($page);
+$templateVars = array_merge($templateVars, $templates->getTemplateVariables(DVWA_WEB_PAGE_TO_ROOT));
+$templateVars = array_merge($templateVars, [
+	'title' => $page['title'],
+	'tokenField' => tokenField(),
+	'vulnerabilityFile' => $vulnerabilityFile,
+	'html' => $html
+]);
 
-	<div class=\"vulnerable_code_area\">
-		<form name=\"XSS\" action=\"#\" method=\"GET\">
-			<p>
-				What's your name?
-				<input type=\"text\" name=\"name\">
-				<input type=\"submit\" value=\"Submit\">
-			</p>\n";
-
-if( $vulnerabilityFile == 'impossible.php' )
-	$page[ 'body' ] .= "			" . tokenField();
-
-$page[ 'body' ] .= "
-		</form>
-		{$html}
-	</div>
-
-	<h2>More Information</h2>
-	<ul>
-		<li>" . dvwaExternalLinkUrlGet( 'https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)' ) . "</li>
-		<li>" . dvwaExternalLinkUrlGet( 'https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet' ) . "</li>
-		<li>" . dvwaExternalLinkUrlGet( 'https://en.wikipedia.org/wiki/Cross-site_scripting' ) . "</li>
-		<li>" . dvwaExternalLinkUrlGet( 'http://www.cgisecurity.com/xss-faq.html' ) . "</li>
-		<li>" . dvwaExternalLinkUrlGet( 'http://www.scriptalert1.com/' ) . "</li>
-	</ul>
-</div>\n";
-
-dvwaHtmlEcho( $page );
+echo $templates->render('vulnerabilities/xss_r/index', $templateVars);
 
 ?>
