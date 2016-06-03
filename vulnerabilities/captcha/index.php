@@ -1,5 +1,8 @@
 <?php
 
+$dir = dirname(__FILE__);
+$templates = require $dir.'/../../templates/templates.php';
+
 define( 'DVWA_WEB_PAGE_TO_ROOT', '../../' );
 require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 require_once DVWA_WEB_PAGE_TO_ROOT . "external/recaptcha/recaptchalib.php";
@@ -40,6 +43,18 @@ if( $_DVWA[ 'recaptcha_public_key' ] == "" ) {
 	$html = "<em>Please register for a key</em> from reCAPTCHA: " . dvwaExternalLinkUrlGet( 'https://www.google.com/recaptcha/admin/create' );
 	$hide_form = true;
 }
+
+$templateVars = getPageVariables($page);
+$templateVars = array_merge($templateVars, $templates->getTemplateVariables(DVWA_WEB_PAGE_TO_ROOT));
+$templateVars = array_merge($templateVars, [
+	'title' => $page['title'],
+	'vulnerabilityFile' => $vulnerabilityFile,
+	'html' => $html,
+	'captchaKeySet' => $_DVWA[ 'recaptcha_public_key' ] == "",
+	'configPath' => realpath( getcwd() . DIRECTORY_SEPARATOR . DVWA_WEB_PAGE_TO_ROOT . "config" . DIRECTORY_SEPARATOR . "config.inc.php" )
+]);
+
+echo $templates->render('vulnerabilities/captcha/index', $templateVars);
 
 $page[ 'body' ] .= "
 	<div class=\"body_padded\">
