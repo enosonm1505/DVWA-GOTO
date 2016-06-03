@@ -36,7 +36,8 @@ class TemplateController {
         return [
             'root' => $path,
             'templateRoot' => $path . 'skins/'.$this->theme.'/',
-            'themeName' => $this->theme
+            'themeName' => $this->theme,
+            'defaultTheme' => $this->fallBackTheme
         ];
     }
 }
