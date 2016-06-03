@@ -6,7 +6,7 @@
         <h3>Change your admin password:</h3>
         <br />
 
-        <form action="#" method="GET">";
+        <form action="#" method="GET">
 
             <?php if ($this->data['vulnerabilityFile'] == 'impossible.php'): ?>
             Current password:<br />
@@ -18,7 +18,7 @@
             Confirm new password:<br />
             <input type="password" AUTOCOMPLETE="off" name="password_conf"><br />
             <br />
-            <input type="submit" value="Change" name="Change">\n";
+            <input type="submit" value="Change" name="Change">
 
             <?php if ($this->data['vulnerabilityFile'] == 'high.php' || $this->data['vulnerabilityFile'] == 'impossible.php'): ?>
                 <?= $this->data['tokenField'] ?>
