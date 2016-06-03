@@ -252,16 +252,6 @@ function getPageVariables($page) {
 
 	$messages = messagesPopAllToHtml();
 
-	$systemInfoHtml = "";
-	if( dvwaIsLoggedIn() )
-		$systemInfoHtml = "<div align=\"left\">{$userInfo}<br /><em>Security Level:</em> {$securityLevel}<br />{$phpIds}</div>";
-	if( $page[ 'source_button' ] ) {
-		$systemInfoHtml = dvwaButtonSourceHtmlGet( $page[ 'source_button' ] ) . " $systemInfoHtml";
-	}
-	if( $page[ 'help_button' ] ) {
-		$systemInfoHtml = dvwaButtonHelpHtmlGet( $page[ 'help_button' ] ) . " $systemInfoHtml";
-	}
-
 	// Send Headers + main HTML code
 	Header( 'Cache-Control: no-cache, must-revalidate');   // HTTP/1.1
 	Header( 'Content-Type: text/html;charset=utf-8' );     // TODO- proper XHTML headers...
