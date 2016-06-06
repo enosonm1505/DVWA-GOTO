@@ -1,4 +1,4 @@
-<?php $this->layout($this->data['themeName'].'/templates/base', $this->data) ?>
+<?php $this->layout('sections/base', $this->data) ?>
 
 <div class="body_padded">
 	<h1>Database Setup <img src="<?= $this->data['root'] ?>dvwa/images/spanner.png"/></h1>

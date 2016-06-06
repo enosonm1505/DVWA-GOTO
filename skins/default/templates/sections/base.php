@@ -21,7 +21,7 @@
         <div id="main_menu">
     
             <div id="main_menu_padded">
-                <?= $this->insert('menu', $this->data) ?>
+                <?= $this->insert('sections/menu', $this->data) ?>
             </div>
     
         </div>
@@ -30,7 +30,7 @@
 
             <?= $this->section('content') ?>
             <br /><br />
-            <?= $this->insert('messages', $this->data) ?>
+            <?= $this->insert('sections/messages', $this->data) ?>
     
         </div>
     
@@ -38,7 +38,7 @@
         </div>
     
         <div id="system_info">
-            <?= $this->insert('system_info', $this->data) ?>
+            <?= $this->insert('sections/system_info', $this->data) ?>
         </div>
     
         <div id="footer">

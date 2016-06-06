@@ -1,4 +1,5 @@
-<?php $this->layout($this->data['themeName'].'/templates/vulnerabilities/fi/index', $this->data) ?>
+<?php $this->layout('vulnerabilities/fi/index', $this->data) ?>
+
 <div class="body_padded">
     <h1>Vulnerability: File Inclusion</h1>
 

@@ -25,7 +25,7 @@
                         SPACE HACKERS
                     </a>
                 </div>
-                <?= $this->insert('menu', $this->data) ?>
+                <?= $this->insert('sections/menu', $this->data) ?>
             </div>
         </nav>
     
@@ -33,7 +33,7 @@
 
             <?= $this->section('content') ?>
             <br /><br />
-            <?= $this->insert('default::messages', $this->data) ?>
+            <?= $this->insert('default::sections/messages', $this->data) ?>
     
         </div>
     
@@ -41,7 +41,7 @@
         </div>
     
         <div id="system_info">
-            <?= $this->insert('default::system_info', $this->data) ?>
+            <?= $this->insert('default::sections/system_info', $this->data) ?>
         </div>
     
         <div id="footer">

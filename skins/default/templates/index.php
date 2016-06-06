@@ -1,4 +1,4 @@
-<?php $this->layout('base', $this->data) ?>
+<?php $this->layout('sections/base', $this->data) ?>
 
 <div class="body_padded">
     <h1>Welcome to Damn Vulnerable Web Application!</h1>

@@ -1,4 +1,5 @@
-<?php $this->layout($this->data['themeName'].'/templates/base', $this->data) ?>
+<?php $this->layout('sections/base', $this->data) ?>
+
 <div class="body_padded">
     <h1>Vulnerability: Cross Site Request Forgery (CSRF)</h1>
 

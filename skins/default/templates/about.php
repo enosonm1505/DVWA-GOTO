@@ -1,4 +1,5 @@
-<?php $this->layout($this->data['themeName'].'/templates/base', $this->data) ?>
+<?php $this->layout('sections/base', $this->data) ?>
+
 <div class="body_padded">
     <h2>About</h2>
     <p>Version <?= $this->data['dvwaVersion'] ?> (Release date: <?= $this->data['dvwaReleaseDate'] ?>)</p>

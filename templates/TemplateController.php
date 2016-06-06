@@ -39,11 +39,17 @@ class TemplateController {
     }
     
     // Render a template directly
-    public function render($index, $variables) {
-        if ($this->templates->exists($index)) {
-            return $this->templates->render($index, $variables);
+    public function render($template, $variables) {
+        echo 'PATH AT RENDER: ' . $template . '<br>';
+
+        if ($this->templates->exists($template)) {
+
+            echo 'RENDERING: ' . $template . '<br>';
+            return $this->templates->render($template, $variables);
         } else {
-            return $this->templates->render('default::' . $index, $variables);
+
+            echo 'RENDERING: default::' . $template . '<br>';
+            return $this->templates->render('default::' . $template, $variables);
         }
     }
 
