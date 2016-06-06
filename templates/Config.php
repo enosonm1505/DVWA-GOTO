@@ -83,16 +83,27 @@ Class Config {
      * @throws \Exception Throws an exception when reading the contents failed and no default was specified.
      */
     private function getJsonContent($path, $default = null) {
-        $fileContents = file_get_contents($path);
+        $fileContents = false;
+        $decodedContents = null;
 
-        if ($fileContents !== false) {
-            return json_decode($fileContents);
-        } else {
+        if (file_exists($path)) {
+            $fileContents = file_get_contents($path);
+            $decodedContents = json_decode($fileContents);
+        }
+
+        if (!$fileContents || $decodedContents === null) {
             if ($default === null) {
-                throw new \Exception('There was an error reading the contents from ' . $path .
-                    ' and no default was specified (or was null).');
+                if (!$fileContents) {
+                    throw new \Exception('There was an error reading the contents from ' . $path .
+                        ' and no default was specified (or was null).');
+                } else if ($decodedContents === null) {
+                    throw new \Exception('There was an error reading decoding the JSON from ' . $path .
+                        ' and no default was specified (or was null).');
+                }
             }
             return $default;
         }
+
+        return $decodedContents;
     }
 }
