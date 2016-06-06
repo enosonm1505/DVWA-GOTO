@@ -186,8 +186,6 @@ function renderPage($template, $variables) {
     
     $templateVars = $templateController->getTemplateVariables();
     $templateVars = array_merge($templateVars, $variables);
-    
-	echo 'PATH AT RENDERPAGE: ' . $template . '<br>';
 	
     return $templateController->render($template, $templateVars);
 }
