@@ -1,4 +1,4 @@
-<?php $this->layout($this->data['themeName'].'/templates/base', $this->data) ?>
+<?php $this->layout('base', $this->data) ?>
 
 <div class="body_padded">
     <h1>Welcome to Damn Vulnerable Web Application!</h1>

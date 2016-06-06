@@ -1,15 +1,29 @@
 <?php
+namespace DVWA\Templates;
+use \League\Plates as Plates;
 
-$dir = dirname(__FILE__);
-require $dir.'/../vendor/autoload.php';
+global $dir;
+$dir = dirname(__FILE__) . '/';
+
+require $dir.'../vendor/autoload.php';
+require_once $dir.'Config.php';
 
 class TemplateController {
     private $templates;
 
-    public function __construct($templates) {
+    public function __construct() {
+        global $dir;
+        
+        // TODO: Put this in a config.json file
         $this->theme = 'space';
         $this->fallBackTheme = 'default';
-        $this->templates = new League\Plates\Engine($templates, 'php');
+
+        $this->templates = new Plates\Engine($dir . '../skins/' . $this->theme . '/templates', 'php');
+
+        if ($this->theme !== $this->fallBackTheme) {
+            $this->templates->addFolder('default', $dir . '../skins/' . $this->fallBackTheme . '/templates', true);
+        }
+
 
         $this->templates->registerFunction('externalLink', function ($url, $text = null) {
             if (is_null($text)) {
@@ -19,16 +33,17 @@ class TemplateController {
                 return '<a href="http://hiderefer.com/?' . $url . '" target="_blank">' . $text . '</a>';
             }
         });
+
+        $configPath = $dir . '../skins/' . $this->theme . '/config/config.json';
+        $this->config = new Config($configPath);
     }
     
     // Render a template directly
     public function render($index, $variables) {
-
-        // If the template doesn't exist fall back to the fallback theme
-        if ($this->templates->exists($this->theme.'/templates/'.$index)) {
-            return $this->templates->render($this->theme.'/templates/'.$index, $variables);
+        if ($this->templates->exists($index)) {
+            return $this->templates->render($index, $variables);
         } else {
-            return $this->templates->render($this->fallBackTheme.'/templates/'.$index, $variables);
+            return $this->templates->render('default::' . $index, $variables);
         }
     }
 
@@ -41,5 +56,3 @@ class TemplateController {
         ];
     }
 }
-
-return new TemplateController($dir.'/../skins');
