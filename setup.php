@@ -1,8 +1,5 @@
 <?php
 
-$dir = dirname(__FILE__);
-$templates = require $dir.'/templates/templates.php';
-
 define('DVWA_WEB_PAGE_TO_ROOT', '');
 require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 
@@ -36,7 +33,6 @@ generateSessionToken();
 $configPath = realpath( getcwd() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php");
 
 $templateVars = getPageVariables($page);
-$templateVars = array_merge($templateVars, $templates->getTemplateVariables());
 $templateVars = array_merge($templateVars, [
 	'title' => $page['title'],
 	'configPath' => $configPath,
@@ -61,6 +57,6 @@ $templateVars = array_merge($templateVars, [
 	'DVWAPHPWrite' => $DVWAPHPWrite
 ]);
 
-echo $templates->render('setup', $templateVars);
+echo renderPage('setup', $templateVars);
 
 ?>

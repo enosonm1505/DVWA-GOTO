@@ -1,8 +1,5 @@
 <?php
 
-$dir = dirname(__FILE__);
-$templates = require_once $dir.'/../../templates/templates.php';
-
 define( 'DVWA_WEB_PAGE_TO_ROOT', '../../' );
 require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 
@@ -35,7 +32,6 @@ switch( $_COOKIE[ 'security' ] ) {
 require_once DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/fi/source/{$vulnerabilityFile}";
 
 $templateVars = getPageVariables($page);
-$templateVars = array_merge($templateVars, $templates->getTemplateVariables(DVWA_WEB_PAGE_TO_ROOT));
 $templateVars = array_merge($templateVars, [
     'title' => $page['title']
 ]);

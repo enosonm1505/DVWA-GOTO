@@ -1,8 +1,5 @@
 <?php
 
-$dir = dirname(__FILE__);
-$templates = require $dir.'/../../templates/templates.php';
-
 define('DVWA_WEB_PAGE_TO_ROOT', '../../');
 require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 require_once DVWA_WEB_PAGE_TO_ROOT . "external/recaptcha/recaptchalib.php";
@@ -37,7 +34,6 @@ $hide_form = false;
 require_once DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/captcha/source/{$vulnerabilityFile}";
 
 $templateVars = getPageVariables($page);
-$templateVars = array_merge($templateVars, $templates->getTemplateVariables(DVWA_WEB_PAGE_TO_ROOT));
 $templateVars = array_merge($templateVars, [
 	'title' => $page['title'],
 	'tokenField' => tokenField(),
@@ -49,5 +45,5 @@ $templateVars = array_merge($templateVars, [
 	'recaptchaHtml' => recaptcha_get_html($_DVWA['recaptcha_public_key']),
 ]);
 
-echo $templates->render('vulnerabilities/captcha/index', $templateVars);
+echo renderPage('vulnerabilities/captcha/index', $templateVars);
 ?>

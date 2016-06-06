@@ -5,6 +5,6 @@ $templateVars = array_merge($templateVars, [
     'allowUrlFopen' => ini_get('allow_url_fopen')
 ]);
 
-echo $templates->render('vulnerabilities/fi/pages/include', $templateVars);
+echo renderPage('vulnerabilities/fi/pages/include', $templateVars);
 
 ?>

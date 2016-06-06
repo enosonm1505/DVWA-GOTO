@@ -1,8 +1,5 @@
 <?php
 
-$dir = dirname(__FILE__);
-$templates = require $dir.'/templates/templates.php';
-
 define('DVWA_WEB_PAGE_TO_ROOT', '');
 require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 
@@ -42,7 +39,6 @@ $instructions = preg_replace_callback(
 $instructions = nl2br($instructions);
 
 $templateVars = getPageVariables($page);
-$templateVars = array_merge($templateVars, $templates->getTemplateVariables());
 $templateVars = array_merge($templateVars, [
     'title' => $page['title'],
     'page_id' => $page['page_id'],
@@ -51,6 +47,6 @@ $templateVars = array_merge($templateVars, [
     'instructions' => $instructions
 ]);
 
-echo $templates->render('instructions', $templateVars);
+echo renderPage('instructions', $templateVars);
 
 ?>

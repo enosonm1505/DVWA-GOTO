@@ -10,6 +10,6 @@ $templateVars = array_merge($templateVars, [
 	'host' => $_SERVER['HTTP_HOST']
 ]);
 
-echo $templates->render('vulnerabilities/fi/pages/file3', $templateVars);
+echo renderPage('vulnerabilities/fi/pages/file3', $templateVars);
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-echo $templates->render('vulnerabilities/fi/pages/file2', $templateVars);
+echo renderPage('vulnerabilities/fi/pages/file2', $templateVars);
 
 ?>

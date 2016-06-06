@@ -5,6 +5,6 @@ $templateVars = array_merge($templateVars, [
     'remoteAddr' => $_SERVER['REMOTE_ADDR']
 ]);
 
-echo $templates->render('vulnerabilities/fi/pages/file1', $templateVars);
+echo renderPage('vulnerabilities/fi/pages/file1', $templateVars);
 
 ?>
