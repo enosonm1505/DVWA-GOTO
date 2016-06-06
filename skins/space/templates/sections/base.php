@@ -12,7 +12,7 @@
     <script type="text/javascript" src="<?= $this->data['templateRoot'] ?>../default/js/dvwaPage.js"></script>
 
     <link rel="stylesheet" type="text/css" href="<?= $this->data['templateRoot'] ?>css/main.css" />
-    <link rel="icon" type="image/ico" href="<?= $this->data['root'] ?>favicon.ico" />
+    <link rel="icon" type="image/ico" href="/favicon.ico" />
 </head>
 <body class="home">
     <div class="space-container">
@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
-                        <!--<img src="<?= $this->data['root'] ?>dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />-->
+                        <img src="<?= $this->data['templateRoot'] ?>../default/images/logo.png" alt="Damn Vulnerable Web Application">
                         SPACE HACKERS
                     </a>
                 </div>

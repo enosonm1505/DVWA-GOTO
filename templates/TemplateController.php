@@ -53,10 +53,10 @@ class TemplateController {
         }
     }
 
-    public function getTemplateVariables($path = '') {
+    public function getTemplateVariables() {
         return [
-            'root' => $path,
-            'templateRoot' => $path . 'skins/'.$this->theme.'/',
+            'root' => '/',
+            'templateRoot' => '/skins/'.$this->theme.'/',
             'themeName' => $this->theme,
             'defaultTheme' => $this->fallBackTheme
         ];
