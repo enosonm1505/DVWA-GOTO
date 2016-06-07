@@ -1,4 +1,5 @@
 <?php
+
 namespace DVWA\Templates;
 
 /**
@@ -7,7 +8,7 @@ namespace DVWA\Templates;
  */
 Class Config {
     protected $defaults = [];
-    protected $defaults_location;
+    protected $defaultsLocation;
     protected $themeConfig = [];
 
     /**
@@ -17,9 +18,9 @@ Class Config {
      * @param null $configPath The path to the config file to use.
      */
     public function __construct($configPath = null) {
-        $this->defaults_location = dirname(__FILE__) . '/resources/themeDefaults.json';
+        $this->defaultsLocation = dirname(__FILE__) . '/resources/themeDefaults.json';
 
-        $this->defaults = (array) $this->getJsonContent($this->defaults_location, $this->defaults);
+        $this->defaults = (array) $this->getJsonContent($this->defaultsLocation, $this->defaults);
 
         if ($configPath !== null) {
             $this->themeConfig = (array) $this->getJsonContent($configPath, $this->themeConfig);
@@ -52,7 +53,7 @@ Class Config {
             $this->$property = $value;
             return $this;
         } else {
-            throw new \Exception('Property ' . $property . ' doesn\'t exist in config. Define it in ' . $this->defaults_location . '.');
+            throw new \Exception('Property ' . $property . ' doesn\'t exist in config. Define it in ' . $this->defaultsLocation . '.');
         }
     }
 

@@ -7,6 +7,9 @@ if(!defined('DVWA_WEB_PAGE_TO_ROOT')) {
 
 session_start(); // Creates a 'Full Path Disclosure' vuln.
 
+define('ROOT_DIRECTORY', __DIR__ . '/../../');
+require ROOT_DIRECTORY.'vendor/autoload.php';
+
 // Include configs
 require_once DVWA_WEB_PAGE_TO_ROOT . 'config/config.inc.php';
 require_once('dvwaPhpIds.inc.php');
@@ -183,25 +186,25 @@ function messagesPopAllToHtml() {
 
 function renderPage($template, $variables) {
     global $templateController;
-    
+
     $templateVars = $templateController->getTemplateVariables();
     $templateVars = array_merge($templateVars, $variables);
-	
+
     return $templateController->render($template, $templateVars);
 }
 
 function getPageVariables($page) {
     global $templateController;
-    
+
 	$menuBlocks = array();
 
     $alternativeMenu = $templateController->config->alternativeMenu;
-    
+
 	$menuBlocks['home'] = array();
 	if(dvwaIsLoggedIn()) {
 		$menuBlocks['home'][] = array('id' => 'home', 'name' => 'Home', 'url' => '.');
 		$menuBlocks['home'][] = array('id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php');
-		
+
 		if (!$alternativeMenu) {
 			$menuBlocks['home'][] = array('id' => 'setup', 'name' => 'Setup / Reset DB', 'url' => 'setup.php');
 		}
@@ -210,7 +213,7 @@ function getPageVariables($page) {
 		if (!$alternativeMenu) {
 			$menuBlocks['home'][] = array('id' => 'setup', 'name' => 'Setup DVWA', 'url' => 'setup.php');
 		}
-		
+
 		$menuBlocks['home'][] = array('id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php');
 	}
 
