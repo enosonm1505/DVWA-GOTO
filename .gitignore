@@ -1,6 +1,7 @@
 .idea
 vendor
 composer.phar
-/external/phpids/0.6/lib/IDS/tmp/
-/skins
+external/phpids/0.6/lib/IDS/tmp/
+/skins/*
 !/skins/default
+!/skins/default/*
