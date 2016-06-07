@@ -14,7 +14,7 @@ class TemplateController {
 
     public function __construct() {
         // TODO: Put this in a config.json file
-        $this->theme = 'space';
+        $this->theme = 'default';
         $this->fallBackTheme = 'default';
 
         $this->templates = new Plates\Engine(ROOT_DIRECTORY . 'skins/' . $this->theme . '/templates', 'php');
