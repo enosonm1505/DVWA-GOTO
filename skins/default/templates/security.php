@@ -1,7 +1,7 @@
 <?php $this->layout('sections/base', $this->data) ?>
 
 <div class="body_padded">
-    <h1>DVWA Security <img src="<?= $this->data['root'] ?>dvwa/images/lock.png"/></h1>
+    <h1>DVWA Security <img src="<?= $this->data['templateRoot'] ?>images/lock.png"/></h1>
     <br />
 
     <h2>Security Level</h2>

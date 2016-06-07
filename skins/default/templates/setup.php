@@ -1,7 +1,7 @@
 <?php $this->layout('sections/base', $this->data) ?>
 
 <div class="body_padded">
-	<h1>Database Setup <img src="<?= $this->data['root'] ?>dvwa/images/spanner.png"/></h1>
+	<h1>Database Setup <img src="<?= $this->data['templateRoot'] ?>images/spanner.png"/></h1>
 
 	<p>Click on the 'Create / Reset Database' button below to create or reset your database.<br />
 	If you get an error make sure you have the correct user credentials in: <em><?= $this->data['configPath'] ?></em></p>

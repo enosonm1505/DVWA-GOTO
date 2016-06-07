@@ -72,6 +72,17 @@ You first need to install the dependencies. You do this using [Composer](https:/
 
 That's it!
 
+### Installing Themes
+There is currently one theme for DVWA available called (Space)[https://github.com/LuudJanssen/DVWA-space-theme.git]. Installing themes works in the following way:
+
+  + Go to the folder skins `cd skins`
+  + Clone the repository `git clone https://github.com/LuudJanssen/DVWA-space-theme.git`
+  + Rename the directory to something more usable `mv DVWA-space-theme/ space/`
+  + Install the theme's dependencies and build the theme (instructions in theme README.md file)
+  + Change the theme in `/templates/TemplateController.php`
+  
+Done!
+
 ### Linux Packages
 
 If you are using a Debian based Linux distribution, you will need to install the following packages _(or their equivalent)_:
