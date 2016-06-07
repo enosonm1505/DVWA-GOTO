@@ -64,6 +64,14 @@ https://www.apachefriends.org/en/xampp.html
 
 Simply unzip dvwa.zip, place the unzipped files in your public html folder, then point your browser to: http://127.0.0.1/dvwa/setup.php
 
+### Installing Dependencies
+You first need to install the dependencies. You do this using [Composer](https://getcomposer.org/). 
+
+  + [Install Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+  + Run `composer install`
+
+That's it!
+
 ### Linux Packages
 
 If you are using a Debian based Linux distribution, you will need to install the following packages _(or their equivalent)_:
