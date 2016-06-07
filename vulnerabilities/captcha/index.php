@@ -39,7 +39,7 @@ $templateVars = array_merge($templateVars, [
 	'tokenField' => tokenField(),
 	'vulnerabilityFile' => $vulnerabilityFile,
 	'html' => $html,
-	'captchaKeySet' => $_DVWA['recaptcha_public_key'] == "",
+	'captchaKeySet' => $_DVWA['recaptcha_public_key'] !== "",
 	'configPath' => realpath(getcwd() . DIRECTORY_SEPARATOR . DVWA_WEB_PAGE_TO_ROOT . "config" . DIRECTORY_SEPARATOR . "config.inc.php"),
 	'hideForm' => $hide_form,
 	'recaptchaHtml' => recaptcha_get_html($_DVWA['recaptcha_public_key']),
