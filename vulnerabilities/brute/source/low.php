@@ -23,6 +23,9 @@ if( isset( $_GET[ 'Login' ] ) ) {
 	else {
 		// Login failed
 		$html .= "<pre><br />Username and/or password incorrect.</pre>";
+
+		//Throw warning
+                trigger_error("Username and/or password incorrect.");
 	}
 
 	mysql_close();

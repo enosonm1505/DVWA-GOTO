@@ -71,8 +71,11 @@ if( isset( $_POST[ 'Login' ] ) ) {
 		$data->bindParam( ':user', $user, PDO::PARAM_STR );
 		$data->execute();
 	}
+	// Login failed
 	else {
-		// Login failed
+		//Throw warning
+		trigger_error("Username and/or password incorrect.");
+		
 		sleep( rand( 2, 4 ) );
 
 		// Give the user some feedback

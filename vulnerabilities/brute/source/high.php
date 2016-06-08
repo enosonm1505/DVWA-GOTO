@@ -31,6 +31,9 @@ if( isset( $_GET[ 'Login' ] ) ) {
 		// Login failed
 		sleep( rand( 0, 3 ) );
 		$html .= "<pre><br />Username and/or password incorrect.</pre>";
+
+		//Throw warning
+                trigger_error("Username and/or password incorrect.");
 	}
 
 	mysql_close();

@@ -32,6 +32,7 @@ if( isset( $_POST[ 'Submit' ]  ) ) {
 	else {
 		// Ops. Let the user name theres a mistake
 		$html .= '<pre>ERROR: You have entered an invalid IP.</pre>';
+		trigger_error("ERROR: You have entered an invalid IP.");
 	}
 }
 
