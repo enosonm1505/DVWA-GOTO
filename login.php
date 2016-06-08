@@ -53,10 +53,18 @@ Header('Expires: Tue, 23 Jun 2009 12:00:00 GMT');     // Date in the past
 // Anti-CSRF
 generateSessionToken();
 
-echo renderPage('login', [
-	'messages' => $messagesHtml,
-	'dvwaVersion' => dvwaVersionGet(),
-	'tokenField' => tokenField()
+$page = [
+  'title' => 'Login :: Damn Vulnerable Web Application (DVWA) v' . dvwaVersionGet()
+];
+
+$templateVars = getPageVariables($page);
+$templateVars = array_merge($templateVars, [
+  'title' => $page['title'],
+  'messages' => $messagesHtml,
+  'dvwaVersion' => dvwaVersionGet(),
+  'tokenField' => tokenField()
 ]);
+
+echo renderPage('login', $templateVars);
 
 ?>
