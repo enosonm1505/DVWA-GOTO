@@ -1,5 +1,25 @@
 <?php
 
+use BitSensor\Core\BitSensor;
+use BitSensor\Core\Config;
+
+// Load Composer's autoloader
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+// Create config using PHP.
+$config = new Config();
+$config->setUri('http://dev.bitsensor.io:8080');
+$config->setUser('example_user');
+$config->setApiKey('abcdefghijklmnopqrstuvwxyz');
+$config->setMode(Config::MODE_DETECTION);
+$config->setConnectionFail(Config::ACTION_ALLOW);
+$config->setIpAddressSrc(Config::IP_ADDRESS_REMOTE_ADDR);
+$config->setHostSrc(Config::HOST_SERVER_NAME);
+$config->setLogLevel(Config::LOG_LEVEL_NONE);
+
+// Start BitSensor 
+$bitSensor = new BitSensor($config);
+
 if( !defined( 'DVWA_WEB_PAGE_TO_ROOT' ) ) {
 	define( 'DVWA System error- WEB_PAGE_TO_ROOT undefined' );
 	exit;

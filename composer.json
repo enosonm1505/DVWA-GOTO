@@ -1,6 +1,7 @@
 {
   "require": {
-    "league/plates": "^3.1"
+    "league/plates": "^3.1",
+    "bitsensor/php": "^0.9.3"
   },
   "autoload": {
     "psr-4": {
