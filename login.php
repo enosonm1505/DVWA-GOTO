@@ -43,6 +43,7 @@ if( isset( $_POST[ 'Login' ] ) ) {
 	dvwaRedirect( 'login.php' );
 }
 
+
 $messagesHtml = messagesPopAllToHtml();
 
 Header( 'Cache-Control: no-cache, must-revalidate');    // HTTP/1.1
@@ -52,82 +53,10 @@ Header( 'Expires: Tue, 23 Jun 2009 12:00:00 GMT' );     // Date in the past
 // Anti-CSRF
 generateSessionToken();
 
-echo "
-<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
-
-<html xmlns=\"http://www.w3.org/1999/xhtml\">
-
-	<head>
-
-		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />
-
-		<title>Login :: Damn Vulnerable Web Application (DVWA) v" . dvwaVersionGet() . "</title>
-
-		<link rel=\"stylesheet\" type=\"text/css\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/css/login.css\" />
-
-	</head>
-
-	<body>
-
-	<div id=\"wrapper\">
-
-	<div id=\"header\">
-
-	<br />
-
-	<p><img src=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/login_logo.png\" /></p>
-
-	<br />
-
-	</div> <!--<div id=\"header\">-->
-
-	<div id=\"content\">
-
-	<form action=\"login.php\" method=\"post\">
-
-	<fieldset>
-
-			<label for=\"user\">Username</label> <input type=\"text\" class=\"loginInput\" size=\"20\" name=\"username\"><br />
-
-
-			<label for=\"pass\">Password</label> <input type=\"password\" class=\"loginInput\" AUTOCOMPLETE=\"off\" size=\"20\" name=\"password\"><br />
-
-			<br />
-
-			<p class=\"submit\"><input type=\"submit\" value=\"Login\" name=\"Login\"></p>
-
-	</fieldset>
-
-	" . tokenField() . "
-
-	</form>
-
-	<br />
-
-	{$messagesHtml}
-
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-
-	<!-- <img src=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/RandomStorm.png\" /> -->
-	</div > <!--<div id=\"content\">-->
-
-	<div id=\"footer\">
-
-	<p>" . dvwaExternalLinkUrlGet( 'http://www.dvwa.co.uk/', 'Damn Vulnerable Web Application (DVWA)' ) . " is a RandomStorm OpenSource project.</p>
-
-	</div> <!--<div id=\"footer\"> -->
-
-	</div> <!--<div id=\"wrapper\"> -->
-
-	</body>
-
-</html>";
+echo renderPage('login', [
+	'messages' => $messagesHtml,
+	'dvwaVersion' => dvwaVersionGet(),
+	'tokenField' => tokenField()
+]);
 
 ?>
