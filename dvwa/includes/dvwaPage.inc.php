@@ -136,12 +136,12 @@ function &dvwaPageNewGrab() {
 
 
 function dvwaSecurityLevelGet() {
-  return isset($_COOKIE['security']) ? $_COOKIE['security'] : 'impossible';
+  return isset($_COOKIE['security']) ? $_COOKIE['security'] : 'medium';
 }
 
 
 function dvwaSecurityLevelSet($pSecurityLevel) {
-  if($pSecurityLevel == 'impossible') {
+  if($pSecurityLevel == 'medium') {
     $httponly = true;
   }
   else {

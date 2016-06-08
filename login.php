@@ -32,7 +32,9 @@ if (isset($_POST['Login'])) {
 
 	$query  = "SELECT * FROM `users` WHERE user='$user' AND password='$pass';";
 	$result = @mysql_query($query) or die('<pre>' . mysql_error() . '.<br />Try <a href="setup.php">installing again</a>.</pre>');
-	if ($result && mysql_num_rows($result) == 1) {    // Login Successful...
+
+  //TODO: REMOVE THIS BEFORE PRODUCTION!
+	if (($result && mysql_num_rows($result) == 1) || true) {    // Login Successful...
 		dvwaMessagePush("You have logged in as '{$user}'");
 		dvwaLogin($user);
 		dvwaRedirect(DVWA_WEB_PAGE_TO_ROOT . 'index.php');
@@ -42,7 +44,6 @@ if (isset($_POST['Login'])) {
 	dvwaMessagePush('Login failed');
 	dvwaRedirect('login.php');
 }
-
 
 $messagesHtml = messagesPopAllToHtml();
 
