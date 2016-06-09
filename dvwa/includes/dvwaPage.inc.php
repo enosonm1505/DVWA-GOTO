@@ -201,20 +201,25 @@ function getPageVariables($page) {
   $alternativeMenu = $templateController->config->alternativeMenu;
 
   $menuBlocks['home'] = array();
-  if(dvwaIsLoggedIn()) {
+  if ($alternativeMenu) {
     $menuBlocks['home'][] = array('id' => 'home', 'name' => 'Home', 'url' => '.');
-    $menuBlocks['home'][] = array('id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php');
+  }
+  if(dvwaIsLoggedIn()) {
+    if (!$alternativeMenu) {
+      $menuBlocks['home'][] = array('id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php');
+    }
 
     if (!$alternativeMenu) {
-      $menuBlocks['home'][] = array('id' => 'setup', 'name' => 'Setup / Reset DB', 'url' => 'setup.php');
+      //$menuBlocks['home'][] = array('id' => 'setup', 'name' => 'Setup / Reset DB', 'url' => 'setup.php');
     }
   }
   else {
     if (!$alternativeMenu) {
-      $menuBlocks['home'][] = array('id' => 'setup', 'name' => 'Setup DVWA', 'url' => 'setup.php');
+      //$menuBlocks['home'][] = array('id' => 'setup', 'name' => 'Setup DVWA', 'url' => 'setup.php');
     }
 
-    $menuBlocks['home'][] = array('id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php');
+    $menuBlocks['home'][] = array('id' => 'login', 'name' => 'Login', 'url' => 'login.php');
+    //$menuBlocks['home'][] = array('id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php');
   }
 
   if(dvwaIsLoggedIn()) {
@@ -232,15 +237,15 @@ function getPageVariables($page) {
   }
 
   if ($alternativeMenu) {
-    $menuBlocks['settings'] = array();
-    $menuBlocks['settings'][] = array('id' => 'setup', 'name' => 'Setup DVWA', 'url' => 'setup.php');
+    //$menuBlocks['settings'] = array();
+    //$menuBlocks['settings'][] = array('id' => 'setup', 'name' => 'Setup DVWA', 'url' => 'setup.php');
   }
 
   $menuBlocks['meta'] = array();
   if(dvwaIsLoggedIn()) {
     $category = $alternativeMenu ? 'settings' : 'meta';
-    $menuBlocks[$category][] = array('id' => 'security', 'name' => 'DVWA Security', 'url' => 'security.php');
-    $menuBlocks[$category][] = array('id' => 'phpinfo', 'name' => 'PHP Info', 'url' => 'phpinfo.php');
+    //$menuBlocks[$category][] = array('id' => 'security', 'name' => 'DVWA Security', 'url' => 'security.php');
+    //$menuBlocks[$category][] = array('id' => 'phpinfo', 'name' => 'PHP Info', 'url' => 'phpinfo.php');
   }
   $menuBlocks['meta'][] = array('id' => 'about', 'name' => 'About', 'url' => 'about.php');
 
