@@ -53,6 +53,7 @@ if( isset( $_POST[ 'Upload' ] ) ) {
 	else {
 		// Invalid file
 		$html .= '<pre>Your image was not uploaded. We can only accept JPEG or PNG images.</pre>';
+		trigger_error("Your image was not uploaded. We can only accept JPEG or PNG images.");
 	}
 }
 

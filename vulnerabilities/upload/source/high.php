@@ -1,5 +1,8 @@
 <?php
 
+global $debug;
+$debug = true;
+
 if( isset( $_POST[ 'Upload' ] ) ) {
 	// Where are we going to be writing to?
 	$target_path  = DVWA_WEB_PAGE_TO_ROOT . "hackable/uploads/";
@@ -29,6 +32,7 @@ if( isset( $_POST[ 'Upload' ] ) ) {
 	else {
 		// Invalid file
 		$html .= '<pre>Your image was not uploaded. We can only accept JPEG or PNG images.</pre>';
+		trigger_error("Your image was not uploaded. We can only accept JPEG or PNG images.");
 	}
 }
 

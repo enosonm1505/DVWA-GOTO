@@ -155,6 +155,8 @@ function dvwaSecurityLevelSet($pSecurityLevel) {
 // Start message functions --
 
 function dvwaMessagePush($pMessage) {
+  trigger_error($pMessage);
+
   $dvwaSession =& dvwaSessionGrab();
   if(!isset($dvwaSession['messages'])) {
     $dvwaSession['messages'] = array();
