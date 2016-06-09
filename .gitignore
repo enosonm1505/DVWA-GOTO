@@ -1,6 +1,6 @@
 .idea
 vendor
-composer.phar
+composer.lock
 external/phpids/0.6/lib/IDS/tmp/
 /skins/*
 !/skins/default
