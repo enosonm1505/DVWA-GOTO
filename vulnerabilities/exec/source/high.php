@@ -19,8 +19,11 @@ if( isset( $_POST[ 'Submit' ]  ) ) {
 
 	// Remove any of the charactars in the array (blacklist).
 	$target = str_replace( array_keys( $substitutions ), $substitutions, $target_raw );
-	trigger_error("IP contains blacklist characters that could lead to command execution.");
-
+	
+	if($target != $target_raw) {
+    trigger_error("IP contains blacklist characters that could lead to command execution.", E_USER_ERROR);
+  }
+  
 	// Determine OS and execute the ping command.
 	if( stristr( php_uname( 's' ), 'Windows NT' ) ) {
 		// Windows
