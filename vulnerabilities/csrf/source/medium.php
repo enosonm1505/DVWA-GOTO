@@ -18,10 +18,12 @@ if( isset( $_GET[ 'Change' ] ) ) {
 			$result = mysql_query( $insert ) or die( '<pre>' . mysql_error() . '</pre>' );
 
 			// Feedback for the user
+			trigger_error("Password Changed.", E_USER_ERROR);
 			$html .= "<pre>Password Changed.</pre>";
 		}
 		else {
 			// Issue with passwords matching
+		  trigger_error("Passwords did not match.", E_USER_ERROR);
 			$html .= "<pre>Passwords did not match.</pre>";
 		}
 	}
