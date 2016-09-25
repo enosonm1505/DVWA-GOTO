@@ -15,6 +15,7 @@ if( isset( $_GET[ 'Change' ] ) ) {
 		$insert = "UPDATE `users` SET password = '$pass_new' WHERE user = '" . dvwaCurrentUser() . "';";
 		$result = mysql_query( $insert ) or die( '<pre>' . mysql_error() . '</pre>' );
 
+    // Feedback for the user
 		$html .= "<pre>Password Changed.</pre>";
     trigger_error("Password Changed.", E_USER_ERROR);
 	}
