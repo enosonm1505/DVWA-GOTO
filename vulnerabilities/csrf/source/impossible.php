@@ -33,12 +33,13 @@ if( isset( $_GET[ 'Change' ] ) ) {
 		$data->bindParam( ':user', dvwaCurrentUser(), PDO::PARAM_STR );
 		$data->execute();
 
-		// Feedback for the user
 		$html .= "<pre>Password Changed.</pre>";
+    trigger_error("Password Changed.", E_USER_ERROR);
 	}
 	else {
 		// Issue with passwords matching
-		$html .= "<pre>Passwords did not match or current password incorrect.</pre>";
+		$html .= "<pre>Passwords did not match.</pre>";
+    trigger_error("Passwords did not match.", E_USER_ERROR);
 	}
 }
 
