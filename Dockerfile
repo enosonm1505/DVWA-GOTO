@@ -32,5 +32,7 @@ RUN service mysql start && \
 
 EXPOSE 80
 
-RUN service apache2 start
+COPY main.sh /
+RUN chmod +x /main.sh
+ENTRYPOINT ["/main.sh"]
 
